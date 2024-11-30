@@ -1,0 +1,197 @@
+/* Geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    background-color: #0000ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    gap: 20px;
+    border-radius: 5px;
+    align-items: center;
+    
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalhos */
+h1,
+h2 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+h3 {
+    text-align: center;
+    color: #0f5011;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+.cont {
+    display: flex;
+    /* Torna o container um flex container */
+    justify-content: flex-end;
+    /* Move o conteúdo para o lado direito */
+    
+}
+
+/* Botões */
+button,
+input[type="submit"] {
+    background-color: #4CAF50;
+    display: inline-flex;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 2em;
+    cursor: pointer;
+    text-align: center;
+   
+   
+    
+}
+a:hover,
+button:hover,
+input[type="submit"]:hover {
+    background-color: #0101b6;
+    text-decoration: none;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(1) {
+    background-color: rgba(255, 217, 0, 0.534);
+}
+
+tbody tr:nth-child(2) {
+    background-color: rgba(192, 192, 192, 0.438);
+}
+
+tbody tr:nth-child(3) {
+    background-color: #cd80328f;
+}
+
+/* Mensagens de sucesso e erro */
+.success {
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.error {
+    color: #fff;
+    background-color: #f44336;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}

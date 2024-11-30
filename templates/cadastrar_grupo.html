@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Grupo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+ 
+    <div class="container">
+        <h1>Cadastrar Grupo</h1>
+    <form method="POST">
+        <label for="nome_grupo">Nome do Grupo:</label>
+        <input type="text" id="nome_grupo" name="nome_grupo" required>
+        <button class="button" href="submit">Cadastrar</button>
+    </form>
+        <div class="cont">
+            <a class="button" href="{{ url_for('home') }}">Voltar</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charada</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <h1>Charada</h1>
+
+    <p>{{ charada.texto }}</p>
+
+    <form action="{{ url_for('charada', id=charada.id) }}" method="POST">
+        <input type="text" name="resposta" placeholder="Digite sua resposta" required>
+        <input type="hidden" name="grupo_id" value="{{ grupo.id }}">
+        <button type="submit">Enviar Resposta</button>
+    </form>
+
+    {% if erro %}
+    <p style="color: red;">{{ erro }}</p>
+    {% endif %}
+</body>
+
+</html>

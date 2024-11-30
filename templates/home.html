@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+    
+    <div class="container">
+        <h1>Jogo de Charadas!</h1>
+        <p><h3>Cadastre os grupos para começar.</h3></p>
+        <div class="cont">
+            <a class="button" href="{{ url_for('cadastrar_grupo') }}"><i class="fas fa-plus"></i> Cadastrar Grupos</a>
+        </div>
+            
+            <!-- Tabela de ranking -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome do Grupo</th>
+                        <th>Pontos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if grupos %}
+                    {% for grupo in grupos %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ grupo.nome }}</td>
+                        <td>{{ grupo.pontos }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="3">Nenhum grupo cadastrado ainda.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        
+    </div>
+    
+
+</body>
+
+</html>
