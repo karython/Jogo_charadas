@@ -45,6 +45,10 @@ Para rodar o sistema, basta executar:
 
 ```bash
 python app.py
+
+ou
+
+flask run --host=0.0.0.0 (Para testar no celular de mesma rede!)
 ```
 
 Isso iniciará o servidor localmente. Acesse `http://localhost:5000` no seu navegador para começar a jogar!

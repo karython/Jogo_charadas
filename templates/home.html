@@ -16,9 +16,55 @@
     <div class="container">
         <h1>Jogo de Charadas!</h1>
         <p><h3>Cadastre os grupos para começar.</h3></p>
+        <!--
         <div class="cont">
             <a class="button" href="{{ url_for('cadastrar_grupo') }}"><i class="fas fa-plus"></i> Cadastrar Grupos</a>
         </div>
+        -->
+        
+
+        <button class="button" id="ler-charada">Ler Charada</button>
+        
+        <video id="video" autoplay style="display: none; width: 100%;"></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+        
+        <script>
+            const button = document.getElementById('ler-charada');
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+
+            button.addEventListener('click', () => {
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                    .then(stream => {
+                        video.srcObject = stream;
+                        video.setAttribute("playsinline", true); // Importante para dispositivos móveis
+                        video.style.display = 'block';
+                        video.play();
+                        scan();
+                    })
+                    .catch(err => {
+                        console.error("Erro ao acessar a câmera:", err);
+                        alert("Não foi possível acessar a câmera.");
+                    });
+            });
+
+            function scan() {
+                const ctx = canvas.getContext("2d");
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+                if (code) {
+                    alert(`Charada detectada: ${code.data}`);
+                    window.location.href = `/charada/${code.data}`;
+                } else {
+                    requestAnimationFrame(scan);
+                }
+            }
+        </script>
             
             <!-- Tabela de ranking -->
             <table>

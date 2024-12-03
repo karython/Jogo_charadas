@@ -13,12 +13,11 @@
 
     <p>{{ charada.texto }}</p>
 
-    <form action="{{ url_for('charada', id=charada.id) }}" method="POST">
+    <form action="{{ url_for('charada', id=id) }}" method="POST">
         <input type="text" name="resposta" placeholder="Digite sua resposta" required>
-        <input type="hidden" name="grupo_id" value="{{ grupo.id }}">
         <button type="submit">Enviar Resposta</button>
     </form>
-
+    
     {% if erro %}
     <p style="color: red;">{{ erro }}</p>
     {% endif %}
