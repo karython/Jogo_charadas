@@ -8,4 +8,4 @@ web: gunicorn --config gunicorn.conf.py gettingstarted.wsgi
 
 # https://devcenter.heroku.com/articles/release-phase
 
-#release: ./app.py migrate --no-input
+#release: ./manage.py migrate --no-input
