@@ -24,9 +24,10 @@ def gerar_qrcode(charada_id):
     if not os.path.exists(static_folder):
         os.makedirs(static_folder)
 
-    url = f'http://localhost:5000/charada/{charada_id}'
+    # Altere 'seu-dominio.com' para o domínio ou IP do seu servidor
+    url = f'https://karythongomes.pythonanywhere.com/charada/{charada_id}'
     qr = qrcode.make(url)
-    qr.save(os.path.join(static_folder, f'qrcode_{charada_id}.png')) 
+    qr.save(os.path.join(static_folder, f'qrcode_{charada_id}.png'))
 
 def ranking():
     ordenados = sorted(grupos, key=lambda x: x['pontos'], reverse=True)
@@ -87,15 +88,15 @@ def cadastrar_grupo():
 def charada(id):
     charada_info = charadas.get(id)
     if not charada_info:
-        return 'Charada não encontrada.', 404
+        return render_template('erro.html', mensagem="Charada não encontrada."), 404
     
     grupo_id = session.get('grupo_id')
     if not grupo_id:
-        return 'Grupo não identificado! Faça login novamente.', 403
+        return redirect(url_for('cadastrar_grupo'))
     
     grupo = next((g for g in grupos if g['id'] == int(grupo_id)), None)
     if not grupo:
-        return 'Grupo não encontrado.', 404
+        return render_template('erro.html', mensagem="Grupo não encontrado!"), 404
     
     if request.method == 'POST':
         resposta = request.form.get('resposta', '').lower()
@@ -103,8 +104,8 @@ def charada(id):
             grupo['pontos'] += charada_info['avanco']
             return redirect(url_for('home'))
         else:
-            return render_template('charada.html', charada=charada_info, erro='Resposta incorreta! Tente novamente.', grupo=grupo, id=id)
-
+            return render_template('charada.html', charada=charada_info, erro="Resposta incorreta! Tente novamente.", grupo=grupo, id=id)
+    
     return render_template('charada.html', charada=charada_info, grupo=grupo, id=id)
 
 if __name__ == '__main__':
