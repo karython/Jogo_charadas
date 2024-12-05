@@ -1,6 +1,7 @@
 from flask import Flask, session, request, render_template, redirect, url_for, jsonify
 import qrcode
 import os
+import ssl
 
 app = Flask(__name__)
 app.secret_key = 'charadas_senai'
@@ -14,6 +15,7 @@ charadas = {
 }
 
 # Variável para controlar qual charada está em andamento
+
 charada_atual = 1  # Exemplo: começando com a charada 1
 
 # Função para gerar QR Code
@@ -106,9 +108,10 @@ def charada(id):
     return render_template('charada.html', charada=charada_info, grupo=grupo, id=id)
 
 if __name__ == '__main__':
-  
-    # Gerar QR Codes para todas as charadas ao iniciar
+    #context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+    #context.load_cert_chain('path/to/cert.pem', 'path/to/key.pem')  # Substitua pelos caminhos reais
+    # Gera os QR Codes para todas as charadas
     for charada_id in charadas.keys():
         gerar_qrcode(charada_id)
     
-    app.run(debug=True)
+    app.run( debug=True)

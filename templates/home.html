@@ -11,23 +11,27 @@
 </head>
 
 <body>
-    
-    
+
+
     <div class="container">
         <h1>Jogo de Charadas!</h1>
-        <p><h3>Cadastre os grupos para começar.</h3></p>
+        <p>
+        <h3>Cadastre os grupos para começar.</h3>
+        </p>
         <!--
         <div class="cont">
             <a class="button" href="{{ url_for('cadastrar_grupo') }}"><i class="fas fa-plus"></i> Cadastrar Grupos</a>
         </div>
         -->
-        
+
 
         <button class="button" id="ler-charada">Ler Charada</button>
-        
+        <button class="button" id="parar-camera" style="display: none;">Parar Câmera</button>
+
+
         <video id="video" autoplay style="display: none; width: 100%;"></video>
         <canvas id="canvas" style="display: none;"></canvas>
-        
+
         <script>
             const button = document.getElementById('ler-charada');
             const video = document.getElementById('video');
@@ -65,36 +69,37 @@
                 }
             }
         </script>
-            
-            <!-- Tabela de ranking -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Posição</th>
-                        <th>Nome do Grupo</th>
-                        <th>Pontos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if grupos %}
-                    {% for grupo in grupos %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ grupo.nome }}</td>
-                        <td>{{ grupo.pontos }}</td>
-                    </tr>
-                    {% endfor %}
-                    {% else %}
-                    <tr>
-                        <td colspan="3">Nenhum grupo cadastrado ainda.</td>
-                    </tr>
-                    {% endif %}
-                </tbody>
-            </table>
-        
-    </div>
-    
 
+        <!-- Tabela de ranking -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Nome do Grupo</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if grupos %}
+                {% for grupo in grupos %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ grupo.nome }}</td>
+                    <td>{{ grupo.pontos }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="3">Nenhum grupo cadastrado ainda.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script src="static/js/script.js" defer></script>
 </body>
 
 </html>
