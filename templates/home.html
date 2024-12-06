@@ -7,6 +7,7 @@
     <title>Charadas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
 
 </head>
 
@@ -23,49 +24,15 @@
             <a class="button" href="{{ url_for('cadastrar_grupo') }}"><i class="fas fa-plus"></i> Cadastrar Grupos</a>
         </div>
         -->
-        <button id="ler-charada">Ler Charada</button>
-        <button id="parar-camera" style="display: none;">Parar Câmera</button>
-        <video id="video" style="display: none;"></video>
-        <canvas id="canvas" style="display: none;"></canvas>
 
-
-        <script>
-            const button = document.getElementById('ler-charada');
-            const video = document.getElementById('video');
-            const canvas = document.getElementById('canvas');
-
-            button.addEventListener('click', () => {
-                navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-                    .then(stream => {
-                        video.srcObject = stream;
-                        video.setAttribute("playsinline", true); // Importante para dispositivos móveis
-                        video.style.display = 'block';
-                        video.play();
-                        scan();
-                    })
-                    .catch(err => {
-                        console.error("Erro ao acessar a câmera:", err);
-                        alert("Não foi possível acessar a câmera.");
-                    });
-            });
-
-            function scan() {
-                const ctx = canvas.getContext("2d");
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-                if (code) {
-                    alert(`Charada detectada: ${code.data}`);
-                    window.location.href = `/charada/${code.data}`;
-                } else {
-                    requestAnimationFrame(scan);
-                }
-            }
-        </script>
+        <div class="container">
+            <h1>Leitor de Charadas</h1>
+            <button id="ler-charada">Ativar Câmera</button>
+            <button id="parar-camera" style="display: none;">Parar Câmera</button>
+            <video id="video" style="display: none; width: 100%; height: auto;"></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+        </div>
+        <script src="{{ url_for('static', filename='js/charada.js') }}"></script>
 
         <!-- Tabela de ranking -->
         <table>

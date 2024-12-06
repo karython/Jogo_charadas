@@ -9,7 +9,7 @@ button.addEventListener('click', () => {
     navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
         .then((stream) => {
             video.srcObject = stream;
-            video.setAttribute('playsinline', true);
+            video.setAttribute('playsinline', true); // Requisito para iOS
             video.style.display = 'block';
             stopButton.style.display = 'block';
             video.play();
@@ -21,48 +21,56 @@ button.addEventListener('click', () => {
         })
         .catch((err) => {
             console.error("Erro ao acessar a câmera:", err);
-            alert("Não foi possível acessar a câmera.");
+            alert("Não foi possível acessar a câmera. Verifique as permissões.");
         });
 });
 
 // Evento para parar a câmera
 stopButton.addEventListener('click', () => {
-    const stream = video.srcObject;
-    if (stream) {
-        const tracks = stream.getTracks();
-        tracks.forEach(track => track.stop());
-        video.style.display = 'none';
-        stopButton.style.display = 'none';
-    }
+    pararCamera();
 });
 
 // Função para escanear o QR Code
 function scan() {
-    // Verifica se o vídeo tem dimensões válidas
     if (video.videoWidth > 0 && video.videoHeight > 0) {
-        // Define o tamanho do canvas baseado no vídeo
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
-        // Desenha o quadro atual do vídeo no canvas
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        // Obtém os dados da imagem do canvas
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
-        // Usa a biblioteca jsQR para ler o QR Code
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code && code.data) {
-            // QR Code detectado
             alert(`Charada detectada: ${code.data}`);
-            window.location.href = `/charada/${code.data}`;
+
+            // Parar a câmera e ocultar elementos
+            pararCamera();
+
+            // Tratamento para extrair o ID da URL do QR Code
+            const url = new URL(code.data.trim());
+            const id = url.pathname.split('/').pop(); // Obtém o último segmento da URL (ID)
+
+            if (id && !isNaN(parseInt(id))) {
+                window.location.href = `/charada/${id}`;
+            } else {
+                alert("QR Code inválido! Certifique-se de que o código contém um ID válido.");
+            }
         } else {
-            // Continua tentando se o QR Code não for detectado
             requestAnimationFrame(scan);
         }
     } else {
-        // Reexecuta a leitura até que o vídeo esteja pronto
         setTimeout(scan, 100);
     }
+}
+
+// Função para parar a câmera
+function pararCamera() {
+    const stream = video.srcObject;
+    if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop());
+    }
+    video.style.display = 'none';
+    stopButton.style.display = 'none';
 }
