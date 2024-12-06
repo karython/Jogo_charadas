@@ -1,0 +1,10 @@
+1: {"texto": "Forças internas, fraquezas escondidas, Oportunidades ao alcance, ameaças que nos cercam. Eu sou?", "resposta": "ANÁLISE SWOT", "avanco": 10},
+    2: {"texto": "Quatro quadrantes, prioridades claras, urgente versus importante, decisões precisas. Eu sou?", "resposta": "MATRIZ EISENHOWER", "avanco": 8},
+    3: {"texto": "Seis perguntas, um plano perfeito, Quem, quando, onde, o quê, por quê e como, útil e versátil eu sou?", "resposta": "5W2H", "avanco": 8},
+    4: {"texto": "Registro detalhado, cronológico e preciso, decisões, ações e resultados, tudo anotado. Um documento indispensável no ambiente empresarial, por ser um resumo ou registro escrito dos fatos e das decisões, ocorrências ou resoluções de uma reunião. Trata-se da?", "resposta": "ATA", "avanco": 8},
+    5: {"texto": "Solicitação clara, objetiva e respeitosa, para obter algo, precisa ser feita. O que sou?", "resposta": "PEDIDO", "avanco": 8},
+    6: {"texto": "Fatos, dados e conclusões, apresentados com clareza, para informar e orientar, é minha finalidade. O que sou?", "resposta": "RELATÓRIO", "avanco": 8},
+    7: {"texto": "Documentação precisa, organizada e acessível, para consultas futuras, é fundamental. O que sou?", "resposta": "ARQUIVO", "avanco": 8},
+    8: {"texto": "Comunicação eficaz, clara e objetiva, para evitar mal-entendidos, é essencial. O que sou?", "resposta": "OFÍCIO", "avanco": 8},
+    9: {"texto": "Análise crítica, reflexão e ajustes, para melhorar processos, é minha função. O que sou?", "resposta": "ANÁLISE DE PROCESSOS", "avanco": 8}
+    
