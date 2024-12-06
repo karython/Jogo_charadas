@@ -9,14 +9,22 @@
 </head>
 
 <body>
- 
+
     <div class="container">
         <h1>Cadastrar Grupo</h1>
-    <form method="POST">
-        <label for="nome_grupo">Nome do Grupo:</label>
-        <input type="text" id="nome_grupo" name="nome_grupo" required>
-        <button class="button" href="submit">Cadastrar</button>
-    </form>
+
+        <!-- Exibe mensagem de erro, se existir -->
+        {% if erro %}
+        <div class="error-message" style="color: red; font-weight: bold;">
+            {{ erro }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            <label for="nome_grupo">Nome do Grupo:</label>
+            <input type="text" id="nome_grupo" name="nome_grupo" required>
+            <button class="button" href="submit">Cadastrar</button>
+        </form>
         <div class="cont">
             <a class="button" href="{{ url_for('home') }}">Voltar</a>
         </div>

@@ -75,27 +75,35 @@ def login():
 @app.route('/cadastrar_grupo', methods=['GET', 'POST'])
 def cadastrar_grupo():
     if request.method == 'POST':
-        nome_grupo = request.form.get('nome_grupo')
+        nome_grupo = request.form.get('nome_grupo').strip()  # Remover espaços extras
+        
+        # Verifica se o nome do grupo foi fornecido
         if not nome_grupo:
             return render_template('cadastrar_grupo.html', erro='O nome do grupo é obrigatório!')
         
         # Verifica se já existe um grupo com o mesmo nome (case-insensitive)
         if any(grupo['nome'].lower() == nome_grupo.lower() for grupo in grupos):
-            return render_template('cadastrar_grupo.html', erro='Já existe um grupo com esse nome!')
-
-
+            return render_template('cadastrar_grupo.html', erro=f"Já existe um grupo com o nome '{nome_grupo}'!")
+        
         # Criar um ID único para o grupo
         novo_grupo_id = len(grupos) + 1
-        novo_grupo = {'id': novo_grupo_id, 'nome': nome_grupo, 'pontos': 0}
+        novo_grupo = {
+            'id': novo_grupo_id, 
+            'nome': nome_grupo, 
+            'pontos': 0, 
+            'respondidas': []  # Inicializa lista de charadas respondidas
+        }
         grupos.append(novo_grupo)
 
         # Armazenar o grupo na sessão
         session['grupo_id'] = novo_grupo_id
         session['grupo_nome'] = nome_grupo
 
+        # Redireciona para a página inicial
         return redirect(url_for('home'))
 
     return render_template('cadastrar_grupo.html')
+
 
 @app.route('/charada/<int:id>', methods=['GET', 'POST'])
 def charada(id):
