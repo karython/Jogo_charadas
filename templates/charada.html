@@ -9,18 +9,26 @@
 </head>
 
 <body>
-    <h1>Charada</h1>
+    <div class="container">
+        <h1>Charada</h1>
 
-    <p>{{ charada.texto }}</p>
+        {% if ja_respondida %}
+        <!-- Feedback de charada já respondida -->
+        <p>Você já respondeu esta charada. Não é possível responder novamente.</p>
+        <button onclick=window.location.href="{{ url_for('home') }}">Voltar para a Tela Inicial</button>
+        {% else %}
+        <!-- Exibição da charada e formulário de resposta -->
+        <h1>{{ charada.texto }}</h1>
+        <form method="post">
+            <input type="text" name="resposta" placeholder="Digite sua resposta aqui">
+            <button type="submit">Enviar Resposta</button>
+        </form>
 
-    <form action="{{ url_for('charada', id=id) }}" method="POST">
-        <input type="text" name="resposta" placeholder="Digite sua resposta" required>
-        <button type="submit">Enviar Resposta</button>
-    </form>
-    
-    {% if erro %}
-    <p style="color: red;">{{ erro }}</p>
-    {% endif %}
+        {% if erro %}
+        <p class="erro">{{ erro }}</p>
+        {% endif %}
+        {% endif %}
+    </div>
 </body>
 
 </html>

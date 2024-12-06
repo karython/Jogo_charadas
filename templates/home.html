@@ -23,14 +23,11 @@
             <a class="button" href="{{ url_for('cadastrar_grupo') }}"><i class="fas fa-plus"></i> Cadastrar Grupos</a>
         </div>
         -->
-
-
-        <button class="button" id="ler-charada">Ler Charada</button>
-        <button class="button" id="parar-camera" style="display: none;">Parar Câmera</button>
-
-
-        <video id="video" autoplay style="display: none; width: 100%;"></video>
+        <button id="ler-charada">Ler Charada</button>
+        <button id="parar-camera" style="display: none;">Parar Câmera</button>
+        <video id="video" style="display: none;"></video>
         <canvas id="canvas" style="display: none;"></canvas>
+
 
         <script>
             const button = document.getElementById('ler-charada');
@@ -97,7 +94,7 @@
         </table>
 
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
     <script src="static/js/script.js" defer></script>
 </body>
