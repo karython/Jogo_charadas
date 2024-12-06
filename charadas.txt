@@ -1,4 +1,4 @@
-1: {"texto": "Forças internas, fraquezas escondidas, Oportunidades ao alcance, ameaças que nos cercam. Eu sou?", "resposta": "ANÁLISE SWOT", "avanco": 10},
+    1: {"texto": "Forças internas, fraquezas escondidas, Oportunidades ao alcance, ameaças que nos cercam. Eu sou?", "resposta": "ANÁLISE SWOT", "avanco": 10},
     2: {"texto": "Quatro quadrantes, prioridades claras, urgente versus importante, decisões precisas. Eu sou?", "resposta": "MATRIZ EISENHOWER", "avanco": 8},
     3: {"texto": "Seis perguntas, um plano perfeito, Quem, quando, onde, o quê, por quê e como, útil e versátil eu sou?", "resposta": "5W2H", "avanco": 8},
     4: {"texto": "Registro detalhado, cronológico e preciso, decisões, ações e resultados, tudo anotado. Um documento indispensável no ambiente empresarial, por ser um resumo ou registro escrito dos fatos e das decisões, ocorrências ou resoluções de uma reunião. Trata-se da?", "resposta": "ATA", "avanco": 8},
