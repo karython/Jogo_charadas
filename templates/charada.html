@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charada</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -22,15 +21,9 @@
 
         <!-- Exibição da charada e formulário de resposta -->
 
-        <h1></h1>
+        <h3>{{ charada.texto }}</h3>
 
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Título especial</h5>
-                <p class="card-text">{{ charada.texto }}.</p>
 
-            </div>
-        </div>
 
         <form method="post">
 
